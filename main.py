@@ -7,14 +7,14 @@ def guess(x):
     guess = 0
     # we want to run the program until the random number is guess, which means we will need a loop with a condition: a WHILE LOOP
     # we have to start our variable somewhere, but we dont want it accidentally be the random number so we start at 0 since our randint must be more than 1 accourding to our parameters
-    # while guess != random_number:
-    #     guess = int(input(f"Guess a number between 1 and {x}: "))
-    #     if guess < random_number:
-    #         print("Sorry, guess again. Too low")
-    #     elif guess > random_number:
-    #         print("Sorry, guess again. Too high")
-    # print(f"Yay, congrats you have guessed the number {random_number} correctly")
-# guess(10)
+    while guess != random_number:
+        guess = int(input(f"Guess a number between 1 and {x}: "))
+        if guess < random_number:
+            print("Sorry, guess again. Too low")
+        elif guess > random_number:
+            print("Sorry, guess again. Too high")
+    print(f"Yay, congrats you have guessed the number {random_number} correctly")
+guess(10)
 
 def computer_guess(x):
     # we have to set a low and a high bound
