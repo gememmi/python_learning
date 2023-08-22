@@ -1,23 +1,25 @@
 import math
 import random
 
+
 class Player:
     def __init__(self, letter):
         # letter is x or o
         self.letter = letter
 
         # we want all players to get their next move
-
+        # place holder method that ensures all subclasses have this method, pass overrides it
     def get_move(self, game):
         pass
 
+# subclass of Player class
 class RandomComputerPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
 
     def get_move(self, game):
     #   get a random valid spot for our next move
-      square = random.choice(game.available_moves)
+      square = random.choice(game.available_moves())
       return square
 
 
@@ -59,4 +61,9 @@ class HumanPlayer(Player):
 
 # INSTANCE METHODS: take an input parameter of self to access the attributes fo the class. get_move is an example of an instance method. 
 
-
+# BASE CLASSES, WHY?:
+# establish common interface and behavior that all Player subclasses should follow. This helps you avoid duplicating code for shared functionalities.
+# Subclasses are basically specialized cases of the base class. So the base class allows the subclasses to inherit properties and behaviors and then add their own distinct characteristics. Both of our subclasses inherit the concept of making moves, but the implement them differently.
+# Computer makes a random choice move and HumanPlayer.
+# SUPER FUNCTION: is used to call methods from the parent class within the subclass. It ensures that the behavior defined in the parents clas is still executed while allowing the subclass to add its own unique functionality. This is espeically important when you wnat to extend the functionality ofthe parent class rath then completely replacing it. 
+# So in our subclasses the "letter" attribute is properly initialized through the base class using super().__init__(letter)
