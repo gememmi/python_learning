@@ -1,11 +1,15 @@
 from player import HumanPlayer
 from player import RandomComputerPlayer
 
+# class for a game instace
 class TicTacToe:
+    # initializes each game with a game board of 9 squares and a variable to track the current winner
     def __init__(self):
-        self.board =  [' ' for _ in range(9)] # we will use single lsit of rep 3x3
+        # generates a list with 9 elements, each elemetn being a space
+        self.board =  [' ' for _ in range(9)] # we will use single list of rep 3x3
         self.current_winner = None # keep track of winner!
 
+#   this funciton prints the state of the board in a user friendly format
     def print_board(self):
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print('| ' + ' | '.join(row) + ' |')
@@ -96,3 +100,9 @@ if __name__ == '__main__':
     o_player = RandomComputerPlayer('O')
     t = TicTacToe()
     play(t, x_player, o_player)             
+
+
+
+    # When we first create the game instance with a a board we use: self.board =  [' ' for _ in range(9)]. But what does this mean? We are initalizing a list of 9 empty spaces by running a for loop with a - variable 9 times. So we are saying making a space for each element in a range of 9.
+
+    # EXPLAIN HOW WE SET UP THE BOARD: for i in range(3) this is a for loop that iterates over the first three values, 0 1 2d

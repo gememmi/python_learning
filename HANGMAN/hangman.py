@@ -1,5 +1,5 @@
 import random
-from words import words
+from HANGMAN.words import words
 import string
 
 

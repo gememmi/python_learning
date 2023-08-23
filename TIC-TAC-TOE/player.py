@@ -30,11 +30,16 @@ class HumanPlayer(Player):
     # def __repr__(self):
     #     return "Letter: {}".format(self.letter)
 
+    # gets user input for a move and validates whether the input is a valid move, ie an available move
+   
+    # game refers to a instance of a tic tac toe game
     def get_move(self, game):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + '\'s turn. Input move (0-9): ')
+            square = input(self.letter + '\'s turn. Input move (0-8): ')
+            # here we try to conver the user input to an integer, if not an integer than the program raises an error
+            # we hand exceptions in the while until we get a valid input
             try:
                 val = int(square)
                 if val not in game.available_moves():
