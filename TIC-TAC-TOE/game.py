@@ -1,5 +1,4 @@
-from player import HumanPlayer
-from player import RandomComputerPlayer
+from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
 # class for a game instace
 class TicTacToe:
@@ -13,6 +12,7 @@ class TicTacToe:
     def print_board(self):
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print('| ' + ' | '.join(row) + ' |')
+
     
     @staticmethod
     def print_board_nums():
@@ -22,16 +22,15 @@ class TicTacToe:
 
     def available_moves(self):
         return [i for i, spot in enumerate(self.board) if spot == ' ']
-        # moves = []
-        # for (i, spot) in enumerate(self.board):
-        #     if spot == ' ':
-        #         moves.append(i)
-        # return moves
+    #  return  ['x', 'x', 'o'] --> [(0,'x'), (1, 'x'),(2, 'o')]
+    
     def empty_squares(self):
         return ' ' in self.board
+    # returns any empty spaces in the board
     
     def num_empty_squares(self):
-        return len(self.board.count(' '))
+        return self.board.count(' ')
+    # this just returns the number of empty squares in the board
     
     def make_move(self, square, letter):
         # if valid move, then make the move (assigne square to letter)
@@ -74,6 +73,7 @@ def play(game, x_player, o_player, print_game=True):
     letter = 'X' # starting letter
     # iterate while the game still has empty squares
     while game.empty_squares():
+        # so while it is still true that there are empty squares
         if letter == 'O':
             square = o_player.get_move(game)
         else:
@@ -97,12 +97,27 @@ def play(game, x_player, o_player, print_game=True):
                 print('It\s a tie!')
 if __name__ == '__main__':
     x_player = HumanPlayer('X') 
-    o_player = RandomComputerPlayer('O')
+    o_player = GeniusComputerPlayer('O')
     t = TicTacToe()
-    play(t, x_player, o_player)             
+    play(t, x_player, o_player, print_game=True)             
 
 
 
     # When we first create the game instance with a a board we use: self.board =  [' ' for _ in range(9)]. But what does this mean? We are initalizing a list of 9 empty spaces by running a for loop with a - variable 9 times. So we are saying making a space for each element in a range of 9.
 
-    # EXPLAIN HOW WE SET UP THE BOARD: for i in range(3) this is a for loop that iterates over the first three values, 0 1 2d
+    # EXPLAIN HOW WE SET UP THE BOARD: for each instance of the game, we are taking the list of 9 spaces that we created earlier. The first index,0, will be used to split the board into the first 3 indexes. This will only be done for the first 3 indexes.
+    # So we are creating 3 rows fo 3 elements. For each row, we are printing the lines.
+
+    # @staticmethod? this means that the function belongs to the class itself, not the instance of the class. it can be called on the class itself, without creating an instace of the class.
+    # does not take a self parameter. We are using this method to print the numbers on the board in order to inform the player how to access each space. 
+    # Does not require access to instacne-specific data. 
+
+    # How do we print the numbers? print_board_numbers funtion created varible number_board which is comprised of
+    # the variable is a list that will loop over the first 3 elements, current index is turned into a string and then joined with the bars to create the
+    # board format. 
+
+    # WHAT IS LIST COMPREHESION: takes the place of a for loop. 
+
+    # The available_moves function returns only the indices representing the empty spots on the game board
+    # it does this by iterating over the board, giving each spot an numbered index and then only returning the spots that have an empty space. 
+    # It returns a list of tuples of the available moves with their indexes. We then reference this function in our player.py file.  
